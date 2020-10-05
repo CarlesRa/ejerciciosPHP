@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Ejercicio12</title>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
 <?php 
-    if(isset($_POST['enviar']) && isset($_POST['comidas']) && isset($_POST['motivo'])) {
+    if(isset($_POST['enviar']) && 
+                               strlen($_POST['nombre']) > 0 &&
+                               isset($_POST['comidas']) &&
+                               isset($_POST['motivo'])
+                               ) {
+
       $nombre = $_POST['nombre'];
       $comidas = $_POST['comidas'];
       $motivo = $_POST['motivo'];
@@ -36,21 +41,47 @@
       <br/>
 
       <label for="comidas">Comidas preferentes:</label>
+
       <label for="carne">Carne</label>
-      <input type="checkbox" name="comidas[]" id="carne">
+      <input type="checkbox" name="comidas[]" id="carne" value="Carne" 
+      <?php 
+        if ($_POST['comidas']) 
+          if (in_array('Carne', $_POST['comidas'])) echo 'checked'  
+      ?>>
+
       <label for="verdura">Verdura</label>
-      <input type="checkbox" name="comidas[]" id="verdura" value="Verdura">
+      <input type="checkbox" name="comidas[]" id="verdura" value="Verdura" 
+      <?php 
+        if ($_POST['comidas']) 
+          if (in_array('Verdura', $_POST['comidas'])) echo 'checked'  
+      ?>>
+
       <label for="legumbres">Legumbres</label>
-      <input type="checkbox" name="comidas[]" id="legumbres" value="Legumbres"><br/>
+      <input type="checkbox" name="comidas[]" value="Legumbres"
+      <?php 
+        if ($_POST['comidas']) 
+          if (in_array('Legumbres', $_POST['comidas'])) echo 'checked'  
+      ?>><br/>
+      <?php 
+
+        if (isset($_POST['enviar']) && empty($_POST['comidas'])) {
+          echo"<span style='color:red;'>Debe marcar alguna opción!<br/></span>";
+        }
+      
+      ?>
 
       <label for="motivo">¿Por que le gustaría viajar a Marte?</label><br>
-      <textarea name="motivo" cols="30" rows="5" placeholder="Explique el motivo..."
-        value="<?php if(isset($_POST['motivo'])) echo $_POST['motivo']?>">
+      <textarea name="motivo" cols="30" rows="5" placeholder="Explique el motivo...">
+        <?php 
+          if(strlen(trim($_POST['motivo']))) {
+            echo $_POST['motivo'];
+          } 
+        ?>
       </textarea>
       <?php 
-           if (isset($_POST['enviar']) && empty($_POST['motivo'])) {
-            echo"<span style='color:red;'> Debe introducir un motivo!</span>";
-          }
+        if (isset($_POST['enviar']) && !strlen(trim($_POST['motivo']))) {
+          echo"<span style='color:red;'> Debe introducir un motivo!</span>";
+        }
       ?>
       <br>
 
@@ -59,7 +90,6 @@
       </div>
     </form>
   </div>
-
   <?php 
     }
   ?>
