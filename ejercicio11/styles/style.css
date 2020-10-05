@@ -1,0 +1,27 @@
+* {
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+.container {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+#enviar {
+    background-color: greenyellow;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.boton {
+  text-align: center;
+ 
+}
