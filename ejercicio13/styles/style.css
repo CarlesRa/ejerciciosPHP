@@ -1,0 +1,38 @@
+* {
+  margin: 10px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 1.5rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 6rem;
+}
+
+.container {
+  border: 2px solid blueviolet;
+  border-radius: 25px;
+}
+
+.boton {
+  text-align: center;
+}
+
+#enviar {
+  cursor: pointer;
+}
+
+.container-estilos {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+}
+
