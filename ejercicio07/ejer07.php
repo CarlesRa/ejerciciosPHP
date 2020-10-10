@@ -16,12 +16,11 @@
     ?>
   </table>
   <?php 
-
+  
     echo "<p><br/>¿SERVER es un array númerico o asociativo?";
     echo "<br/>Es un array asociativo porque esta formado por pares clave-valor.";
     echo "<br/>¿Podríamos haberlo recorrido con un for de toda la vida?";
     echo "<br/>No, porque no podriamos haber extraido el valor de la clave, ya que la función key(). imprimiria el primer valor solo al no mover el puntero</p>";
-  
   ?>
   </div>
 </body>
