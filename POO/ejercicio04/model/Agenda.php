@@ -22,6 +22,38 @@
       return $this->contactos;
     }
 
+
+    public function __clone() {
+      foreach ($this->contactos as $key => $contacto) {
+        $this->contactos[$key] = clone $contacto;
+      }
+    }
+
+    public function mostrarLista() {
+      $result = '<table border="1" method="get"><tr>
+                  <th>IdRegistro</th>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Detalle</th>
+                  </tr>';
+
+      if (is_array($this->contactos)) {
+        foreach ($this->contactos as $value) {
+          $result .= '<tr> <td>' . $value->ID . '</td><td>' .
+            $value->NOMBRE . '</td><td>' . $value->TELEFONO . '</td>
+            <td><a href="info_contacto.php?id=' . $value->ID .
+            '&nombre=' . $value->NOMBRE . '&telefono=' . $value->TELEFONO .
+            '">Ver más</a></td></tr>';
+        }
+      }
+      $result .= '</table>';
+      return $result;
+    }
+
+    public function mostrarDetalle() {
+      echo 'Entra mostrarDetalle()';
+    }
+
     public function __toString() {
       $result = '<table border="1"><tr>
                   <th>IdRegistro</th>
@@ -38,12 +70,5 @@
       $result .= '</table>';
       return $result;
     }
-
-   public function __clone() {
-     foreach ($this->contactos as $key => $contacto) {
-      $this->contactos[$key] = clone $contacto;
-     }
-   }
-
   }
 ?>

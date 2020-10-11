@@ -54,7 +54,8 @@
     echo $agendaClone;
   ?>
 
-  <h2>Modifico el atributo nombre a Paco del primer contacto de la agenda clonada y muestro ambas agendas</h2>
+  <h2>Modifico el atributo nombre a Paco del primer contacto
+     de la agenda clonada y muestro ambas agendas</h2>
   <?php 
   
     $agendaClone->getContactos()[0]->NOMBRE = "Paco";
