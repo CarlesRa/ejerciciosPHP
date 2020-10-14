@@ -50,10 +50,6 @@
       return $result;
     }
 
-    public function mostrarDetalle() {
-      echo 'Entra mostrarDetalle()';
-    }
-
     public function __toString() {
       $result = '<table border="1"><tr>
                   <th>IdRegistro</th>
