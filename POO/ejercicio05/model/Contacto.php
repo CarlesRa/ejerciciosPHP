@@ -6,7 +6,7 @@
     protected $nombre;
     protected $telefono;
 
-    public function __construct($data) {
+    protected function __construct($data) {
 
       $this->id = $data['id'];
       $this->nombre = $data['nombre'];
