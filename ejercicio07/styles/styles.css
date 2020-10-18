@@ -1,5 +1,5 @@
 td {
-    border: 2px solid rgba(100, 100, 153, 0.952);
+    border: 2px solid rgba(150, 100, 153, 0.952);
 }
 
 .container {
@@ -8,5 +8,5 @@ td {
 }
 
     p {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }

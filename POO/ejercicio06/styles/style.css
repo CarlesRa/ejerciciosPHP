@@ -1,0 +1,33 @@
+* {
+  padding: 5px;
+  color: white;
+}
+
+html {
+  background: url("../images/back.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+ 
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.title {
+  margin-left: 350px;
+  text-align: center;
+  font-size: 2rem;
+}
+.section {
+  margin-left: 400px;
+  width: 70%;
+  height: 100%;
+  font-size: 1.2rem;
+}
+
+table {
+  background-color:rgba(0,0,255,0.3);
+}
