@@ -74,6 +74,8 @@
     <th>PÁGINAS</th>
 
   <?php 
+
+    //Creo la conexión con Mysql
     $conexion = DbAccess::getInstance();
 
     if ($conexion->connect_errno) {
@@ -85,7 +87,8 @@
     foreach ($libros as $libro) {
 
       $sql02 = 'INSERT INTO libros (id,titulo,autor,paginas) 
-        VALUES ("' . $libro->ID . '", "'. $libro->TITULO .'", "' . $libro->AUTOR. '", "' . $libro->PAGINAS .'")';
+        VALUES ("' . $libro->ID . '", "'. $libro->TITULO .'", "' . $libro->AUTOR. '", "' .
+                $libro->PAGINAS .'")';
 
       $conexion->query($sql02);
     }
@@ -126,7 +129,7 @@
   
   <?php 
 
-    echo '<h2>Elimino los libros de JK Bowling, muestro los que se eliminan y muestro la tabla</h2>';
+    echo '<h2>Elimino los libros de JK Bowling, digo cuantos y muestro la tabla</h2>';
   
     $query = 'DELETE FROM libros WHERE autor="JK Bowling"';
 
@@ -155,7 +158,7 @@
     
   <?php 
   
-    echo '<h2>Cambio el título del libro con ID=8 y muestro todos los sibros</h2>';
+    echo '<h2>Cambio el título del libro con ID=8 y los muestro todos</h2>';
 
     $query =  'UPDATE libros SET titulo="El Morbido Da Vinci" WHERE id=8';
     
@@ -172,7 +175,9 @@
       }
       
     }
-    else echo 'falla';
+    
+    //Cierro la conexión
+    $conexion->close();
   ?>
   </table>
 </body>
