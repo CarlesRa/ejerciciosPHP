@@ -58,7 +58,7 @@
                value="<?php if(isset($_POST['paginas'])) echo $_POST['paginas']?>">
         <?php 
           if (isset($_POST['enviar']) && empty($_POST['paginas'])) {
-            echo"<span style='color:red;'> Debe introducir un paginas!</span><br/>";
+            echo"<span style='color:red;'> Debe introducir la cantidad de paginas!</span><br/>";
           }
         ?>
       </div>

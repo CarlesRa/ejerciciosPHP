@@ -1,0 +1,43 @@
+* {
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.nuevos {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 2;
+}
+
+a {
+    font-size: 1.5rem;
+}
+
+.paises {
+    display: flex;
+    flex-flow: column wrap;
+    
+    flex: 1;
+}
+
+.container input {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: left;
+}
+
+.contenido {
+    font-size: 3rem;
+}
