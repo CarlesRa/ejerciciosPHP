@@ -12,8 +12,8 @@
   
     include 'db/db_access.php';
 
-    if(array_key_exists("user",$_POST) &&
-       array_key_exists("pass",$_POST)) {
+    if(isset($_POST['user']) &&
+       isset($_POST['pass'])) {
       
 
       $user = $_POST['user'];
