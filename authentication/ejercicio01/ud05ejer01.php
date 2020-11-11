@@ -15,7 +15,6 @@
     if(isset($_POST['user']) &&
        isset($_POST['pass'])) {
       
-
       $user = $_POST['user'];
       $pass =  $_POST['pass'];
       $result = DbAccess::insertUser($user, $pass);

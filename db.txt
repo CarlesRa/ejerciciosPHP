@@ -1,0 +1,1 @@
+INSERT INTO `usuarios` (`login`, `password`, `nombre`, `lectura`, `escritura`, `administracion`) VALUES('antonio', SHA1('123456'), 'antonioperez', '1', '0', '1'),('paco', SHA1('78910'), 'paco perez', '1', '1', '0');
