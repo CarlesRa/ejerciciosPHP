@@ -2,9 +2,9 @@
 
 <?php
   
-  echo "La compra de 90€ a quedado en: " . comprobarDescuento(90) . "€<br/>";
-  echo "La compra de 101€ a quedado en: " . comprobarDescuento(101) . "€<br/>";
-  echo "La compra de 560€ a quedado en: " . comprobarDescuento(560) . "€<br/>";
+  echo "La compra de 90€ ha quedado en: " . comprobarDescuento(90) . "€<br/>";
+  echo "La compra de 101€ ha quedado en: " . comprobarDescuento(101) . "€<br/>";
+  echo "La compra de 560€ ha quedado en: " . comprobarDescuento(560) . "€<br/>";
   
   function comprobarDescuento($cantidadDinero) {
     

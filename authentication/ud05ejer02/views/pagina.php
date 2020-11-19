@@ -22,6 +22,7 @@
   
   if (isset($_COOKIE['last-log'])) {
     $ultimoLog = $_COOKIE['last-log'];
+    setcookie('last-log', time(), time()+60*60*60*365);
   }
   else {
     setcookie('last-log', time(), time()+60*60*24*365);
