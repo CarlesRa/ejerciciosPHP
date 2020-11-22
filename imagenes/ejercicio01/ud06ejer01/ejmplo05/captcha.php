@@ -10,17 +10,17 @@
   <?php 
     session_start();
 
-    /*remover posibles encabezados existentes
-    foreach (getallheaders() as $name => $value) {
+    //remover posibles encabezados existentes
+    /* foreach (getallheaders() as $name => $value) {
       header_remove($name);
-    }*/
+    } */
 
     //Limpio los encabezados
-    ob_get_contents();
+    //ob_get_contents();
     ob_end_clean();
     
     $img_width = 100;
-    $img_height = 70;
+    $img_height = 50;
 
     //Creo cadena aleatoria con mktime(marca de tiemo unix)
     $crypt = md5(mktime() * rand());
@@ -35,24 +35,25 @@
     $captcha = imagecreatefrompng("captcha.png");
 
     //Cambio el tamaño
-    $imageReescalada = imagescale($captcha, 100, 50, IMG_BICUBIC_FIXED);
+    $imageReescalada = imagescale($captcha, $img_width, $img_height, IMG_BICUBIC_FIXED);
     
 
     //Colores lineas (RGB)
     $brown = imagecolorallocate($imageReescalada, 80, 70, 30);
-    $pink = imagecolorallocate($imagenReescalada, 227, 167, 232);
+    $pink = imagecolorallocate($imageReescalada, 165, 84, 168);
 
     //Añado lineas a la imagen
     imageline($imageReescalada, 0, 0, 39, 29, $brown);
     imageline($imageReescalada, 40, 0, 64, 29, $brown);
-    imageline($imageReescalada, 60, 12, 64, 29, $brown);
+		imageline($imageReescalada, 60, 12, 64, 29, $brown);
+		imageline($imageReescalada, 65, 18, 50, 20, $brown);
     imageline($imageReescalada, 78, 45, 74, 29, $brown);
 
     //Introduzco la cadena aleatoria en la imagen
     imagestring($imageReescalada, 5, 30, 10, $string, $pink);
-    //imagettftext($imageReescalada, 32, 0, $img_width/20, $img_height*2/10, $black, $passion_one, $string);
+
     //Encripto y almaceno el valor en una variable session
-    $_SESSION['captcha'] = md5($string);
+    $_SESSION['key'] = md5($string);
 
     //Pinto la imagen
     header("Content-type: image/png");

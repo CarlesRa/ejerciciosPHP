@@ -34,7 +34,7 @@
     imagestring($estampa, 5, 20, 20, $texto1, 0x0000FF);
     imagestring($estampa, 10, 20, 40, $texto2, 0x0000FF);
   
-    //Fusionamos la estampa con la foto con una opacidad de 50
+    //Fusiono la estampa con la foto con una opacidad de 50
     imagecopymerge($img, $estampa,
                    imagesx($img) - $sx - $margen_dcho, imagesy($img) - $sy - $margen_inf,
                   0, 0, imagesx($estampa), imagesy($estampa), 50);
