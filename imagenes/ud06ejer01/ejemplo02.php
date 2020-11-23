@@ -20,8 +20,8 @@
       //Obtengo la mitad de las dimensiones de la imagen origen
       $ancho = $img_org/2;
       
-      $ancho_dst = imagesx($img_org);
-      $alto_dst = imagesy($img_org );
+      $ancho_dst = imagesx($img_org)/2;
+      $alto_dst = imagesy($img_org)/2;
 
       //Creo el lienzo con las dimensiones calculadas previamente
       $img_dst = imagecreatetruecolor($ancho_dst, $alto_dst);
