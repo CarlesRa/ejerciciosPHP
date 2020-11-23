@@ -134,7 +134,7 @@
       }
     }
 
-    static function getLastIndex() {
+    static function getLastId() {
       try {
         $connection = Db::getInstance();
         $row = null;

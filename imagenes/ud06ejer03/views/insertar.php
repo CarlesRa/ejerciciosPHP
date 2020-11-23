@@ -12,6 +12,7 @@
   require_once ("../controller/db_access.php");
   require_once ("../utils/lib.php");
   require_once ("../model/libro.php");
+  
 
   if (isset($_POST['enviar'])) {
     insertarLibro();
@@ -73,6 +74,7 @@
 
     <?php 
 
+      //Compruebo si hay libros en la DB y los imprimo
       if (($books = DbAccess::getAllBooks())) {
         echo Lib::printBooks($books);
       }
@@ -80,8 +82,13 @@
         echo 'No hay libros que mostrar';
       }
 
+      /**
+       * Función que comprueba si el formulario es correcto
+       * e inserta el libro en caso afirmativo.
+       */
       function insertarLibro() {
 
+        //Compruebo si los campos obligatorios estan llenos.
         if (empty($_POST['titulo']) || empty($_POST['autor']) ||
             empty($_POST['paginas'])) {
 
@@ -95,41 +102,55 @@
           $paginas = $_POST['paginas'];
 
           
-
+          //Compruebo si se ha seleccionado un fichero
           if (!empty($_FILES['imagen']['tmp_name'])) {
 
-            $book = 
-            [
-            ':titulo' => $titulo,
-            ':autor' => $autor, ':paginas' => $paginas
-            ];
+            //Compruebo si el fichero es del tipo esperado
+            if ($_FILES['imagen']['type'] == 'image/gif' || 
+                $_FILES['imagen']['type'] == 'image/jpg' ||
+                $_FILES['imagen']['type'] == 'image/jpeg' ||
+                $_FILES['imagen']['type'] == 'image/png' ) {
 
-            if ((DbAccess::insertBook($book))) {
-
-              $id = DbAccess::getLastIndex();
-              if ($path = comprobarImagen($id)) {
-                              
-                $book = [];
-                $book = 
-                  [
-                  ':titulo' => $titulo,
-                  ':autor' => $autor, ':paginas' => $paginas,
-                  ':imagen' => $path
-                  ];
-                DbAccess::updateBook($book, $id);
-                $_POST = array();
-
-                return true;
+              $book = 
+              [
+              ':titulo' => $titulo,
+              ':autor' => $autor, ':paginas' => $paginas
+              ];
+              //inserto el libro
+              if ((DbAccess::insertBook($book))) {
+          
+                //Obtengo el id del libro que he insertado
+                $id = DbAccess::getLastId();
+                //llamo al metodo comprobarImagen para obtener el path
+                if ($path = comprobarImagen($id)) {
+                                        
+                  $book = [];
+                  $book = 
+                    [
+                    ':titulo' => $titulo,
+                    ':autor' => $autor, ':paginas' => $paginas,
+                    ':imagen' => $path
+                    ];
+                  DbAccess::updateBook($book, $id);
+                  $_POST = array();
+          
+                  return true;
+                }
+                else {
+                  return false;
+                }
+                        
               }
               else {
                 return false;
               }
-              
             }
             else {
+              showAlert('Solo se aceptan (.gif, .jpeg, .jpg, .png');
               return false;
             }
           }
+          //En caso de $_FILES null, se trata de un libro sin imagen
           else {
             $book = 
             [
@@ -137,7 +158,7 @@
             ':autor' => $autor, ':paginas' => $paginas,
             ];
 
-            if ((DbAccess::insertBook($book, false))) {
+            if ((DbAccess::insertBook($book))) {
               $_POST = array();
               return true;
             }
@@ -148,6 +169,11 @@
         }
       }
 
+      /**
+       * Comprueba que la imagen sea correcta, en caso 
+       * afirmativo devuelve el path de la imagen
+       * que será su id + su extensión
+       */
       function comprobarImagen($bookId) {
 
         error_log('entra comprobar imagen', 0);
@@ -178,49 +204,60 @@
                   return false;
               }
             }
-            else if ($_FILES['imagen']['type'] == 'image/gif' || 
-                     $_FILES['imagen']['type'] == 'image/jpg' ||
-                     $_FILES['imagen']['type'] == 'image/jpeg' ||
-                     $_FILES['imagen']['type'] == 'image/png' ) {
-    
-              if (is_uploaded_file($_FILES['imagen']['tmp_name']) === true){
-                error_log('entra uploaded_file imagen', 0);
-                $mime = $_FILES['imagen']['type'];
-                $extension = explode('/', $mime)[1];
+            if (is_uploaded_file($_FILES['imagen']['tmp_name']) === true){
+
+              $mime = $_FILES['imagen']['type'];
+              $img = $_FILES['imagen']['tmp_name'];
+
+              $extension = explode('/', $mime)[1];
                 
-                $path = '../imagenes/' . $bookId . '.' . $extension;
-                error_log('path resultante: ' . $path, 0);
-                if (move_uploaded_file($_FILES['imagen']['tmp_name'], $path)) {
-                  error_log('se ha guardado el path', 0);
-                  return $path;
-                }
-                else {
-                  showAlert('error al mover el archivo a su destino');
-                  error_log('error al mover', 0);
-                  return false;
-                }
+              $path = '../imagenes/' . $bookId . '.' . $extension;
+              $anchoAlto = 90;
+              $thumb = imagecreatetruecolor($anchoAlto, $anchoAlto);
+
+              if ($extension == 'jpg' || $extension == 'jpeg') $source = imagecreatefromjpeg($img);
+		          else if ($extension == 'gif') $source = imagecreatefromgif($img);
+		          else if ($extension == 'png') $source = imagecreatefrompng($img);
+
+              $originalWidth = imagesx($source);
+              $originalHeight = imagesy($source);
+
+              imagecopyresampled($thumb, $source, 0,0,0,0, $anchoAlto, $anchoAlto, 
+                                 $originalWidth, $originalHeight);
+
+
+              if($extension=="jpg"||$extension=="jpeg"){
+                imagejpeg($thumb,$path, 90);
+                return $path;
+              } 
+              elseif($extension=="png") {
+                imagepng($thumb,$path);
+                return $path;
               }
-              else 
-                showAlert('Error: Posible ataque, file: ' . $_FILES['imagen']['name']);
-                error_log('error ataque', 0);
-                return false;
+              elseif($extension=="gif") {
+                imagegif($thumb,$path);
+                return $path;
+              }
             }
             else {
-              showAlert('Solo se aceptan (.jpg, .jpeg, .gif, .png');
-              DbAccess::deleteBook($bookId);
-              error_log('error formato', 0);
+              showAlert('Error: Posible ataque, file: ' . $_FILES['imagen']['name']);
+
               return false;
-            }
-            
+            } 
           }
         }
       }
 
+      /**
+       * Función para mostrar una alerta con
+       * el mensaje que le paso
+       */
       function showAlert($message) {
         echo '<script language="javascript">';
         echo 'alert("' . $message . '")';
         echo '</script>';
       }
+
     ?>
   </div>
   

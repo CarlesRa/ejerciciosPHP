@@ -38,12 +38,13 @@
 				$nombreSplit = explode('.', $nombreDef);
 				$nuevoNombre120 = $nombreSplit[0] . '_120.' . $nombreSplit[1]; 
 				$nuevoNombre200 = $nombreSplit[0] . '_200.' . $nombreSplit[1]; 
+
 			}
 	?>
 
 	<!--aqui va mostrar la imatge -->
-			<img src=<?php echo mostrarMiniatura($nombreDef, $nuevoNombre120, 120, 120); ?> alt="noesta"> 
-			<img src=<?php echo mostrarMiniatura($nombreDef, $nuevoNombre200, 200, 200); ?> alt="noesta"> 
+			<img src=<?php echo mostrarMiniatura($nombreDef, $nuevoNombre120, 120, 120); ?> alt="no imagen"> 
+			<img src=<?php echo mostrarMiniatura($nombreDef, $nuevoNombre200, 200, 200); ?> alt="no imagen"> 
 	<?php 
 
 		
@@ -84,12 +85,15 @@
 								 $_FILES['imagen']['type'] == 'image/jpeg' ||
 								 $_FILES['imagen']['type'] == 'image/png' ) {
 
-					if (is_uploaded_file($_FILES['imagen']['tmp_name']) === true){
-	
-						$path = './subidas/' . $_FILES['imagen']['name'];
+					if (is_uploaded_file($_FILES['imagen']['tmp_name']) === true) {
+						
+						//Quito los espacios en blanco para evitar un path erroneo
+						$new_str = preg_replace("/\s+/", "", $_FILES['imagen']['name']);
+						$path = './subidas/' . $new_str;
 		
 						if (is_file($path) === true) {
-							$pathSplit = explode('.', $_FILES['imagen']['name']);
+							
+							$pathSplit = explode('.', $new_str);
 							$path = './subidas/' . $pathSplit[0] . '_' . time() . '.' . $pathSplit[1];
 						}
 						if (move_uploaded_file($_FILES['imagen']['tmp_name'], $path)) {

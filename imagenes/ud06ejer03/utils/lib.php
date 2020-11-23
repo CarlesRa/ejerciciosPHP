@@ -17,10 +17,10 @@
         '</td>' ;
         
         if (($path = $book['imagen']) != null) {
-          $result .= '<td><img src="' . $book['imagen'] . '" height=70 width=70></td></tr>';
+          $result .= '<td><img src="' . $book['imagen'] . '"></td></tr>';
         }
         else 
-          $result .= '<td><img src="../imagenes/no_image.png" height=70 width=70></td></tr>';
+          $result .= '</tr>';
       }
 
       $result .= '</table>';
