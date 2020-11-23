@@ -11,15 +11,17 @@
     //Limpio los encabezados
     ob_end_clean();
 
-    $srcGif = 'ahwg.gif';
+    $srcGif = 'nave.gif';
   
     //Creo la imagen cargando el gif
     $img_org = imagecreatefromgif($srcGif);
     
     if ($img_org !== false) {
       //Obtengo la mitad de las dimensiones de la imagen origen
-      $ancho_dst = intval(imagesx($img_org / 2));
-      $alto_dst = intval(imagesy($img_org / 2));
+      $ancho = $img_org/2;
+      
+      $ancho_dst = imagesx($img_org);
+      $alto_dst = imagesy($img_org );
 
       //Creo el lienzo con las dimensiones calculadas previamente
       $img_dst = imagecreatetruecolor($ancho_dst, $alto_dst);

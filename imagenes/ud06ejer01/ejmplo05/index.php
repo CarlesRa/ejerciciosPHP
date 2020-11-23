@@ -1,3 +1,9 @@
+<?php 
+
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +13,7 @@
 </head>
 <body>
   <?php 
-    session_start();
+    
 
 		if (isset($_POST['enviar'])) {
 			if (md5($_POST['text']) != $_SESSION['key'] && $_POST['enviar']) {

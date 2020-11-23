@@ -27,56 +27,56 @@
         <label for="estilos">Acústica</label>
         <input type="checkbox" name="estilos[]" value="Acústica" 
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Acústica', $_POST['estilos'])) echo 'checked'  
           ?>><br>
 
         <label for="estilos">BSO</label>
         <input type="checkbox" name="estilos[]" value="BSO" 
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('BSO', $_POST['estilos'])) echo 'checked'  
           ?>><br>
 
         <label for="estilos">R&B</label>
         <input type="checkbox" name="estilos[]" value="R&B"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('R&B', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 
         <label for="estilos">Electrónica</label>
         <input type="checkbox" name="estilos[]" value="Electrónica"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Electrónica', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 
         <label for="estilos">Folk</label>
         <input type="checkbox" name="estilos[]" value="Folk"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Folk', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 
         <label for="estilos">Jazz</label>
         <input type="checkbox" name="estilos[]" value="Jazz"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Jazz', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 
         <label for="estilos">Pop</label>
         <input type="checkbox" name="estilos[]" value="Pop"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Pop', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 
         <label for="estilos">Rock</label>
         <input type="checkbox" name="estilos[]" value="Rock"
           <?php 
-            if ($_POST['estilos']) 
+            if (isset($_POST['estilos'])) 
               if (in_array('Rock', $_POST['estilos'])) echo 'checked'  
           ?>><br/>
 

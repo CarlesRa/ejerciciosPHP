@@ -19,16 +19,15 @@
       switch ($data) {
 
         case 'ID':
-          $response = $this->id;
+          return $this->id;
           break;
         case 'NOMBRE':
-          $response = $this->nombre;
+          return $this->nombre;
           break;
         case 'TELEFONO': 
-          $response = $this->telefono;
+          return $this->telefono;
           break;
       }
-      return $response;
     }
 
     public function __set($name, $value) {

@@ -17,7 +17,7 @@
 
     public function __get($data) {
 
-      $response;
+ //     $response;
       $response = parent:: __get($data);
       switch($data) {
 
