@@ -32,7 +32,7 @@
 
     public function __get($name) {
 
-      $response;
+      $response = null;
       
       switch ($name) {
         case 'ID' :

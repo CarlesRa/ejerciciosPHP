@@ -113,8 +113,8 @@
 
               $book = 
               [
-              ':titulo' => $titulo,
-              ':autor' => $autor, ':paginas' => $paginas
+              ':titulo' => $titulo, ':autor' => $autor, 
+              ':paginas' => $paginas
               ];
               //inserto el libro
               if ((DbAccess::insertBook($book))) {
@@ -127,8 +127,6 @@
                   $book = [];
                   $book = 
                     [
-                    ':titulo' => $titulo,
-                    ':autor' => $autor, ':paginas' => $paginas,
                     ':imagen' => $path
                     ];
                   DbAccess::updateBook($book, $id);
@@ -142,6 +140,7 @@
                         
               }
               else {
+                showAlert('Error al insertar...');
                 return false;
               }
             }
@@ -152,17 +151,21 @@
           }
           //En caso de $_FILES null, se trata de un libro sin imagen
           else {
+            //date_default_timezone_set('Europe/Madrid');
+            $date = date('Y-m-d H:i:s',time());
             $book = 
             [
-            ':titulo' => $titulo,
-            ':autor' => $autor, ':paginas' => $paginas,
+            ':titulo' => $titulo, ':autor' => $autor,
+            ':paginas' => $paginas
             ];
 
             if ((DbAccess::insertBook($book))) {
+              error_log('entra insertBook', 0);
               $_POST = array();
               return true;
             }
             else {
+              showAlert('Error al insertar...');
               return false;
             }
           }

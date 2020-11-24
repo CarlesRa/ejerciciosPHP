@@ -78,8 +78,9 @@
 
       try {
         $connection = Db::getInstance();
-        $sql = "INSERT INTO libros (titulo, autor, paginas) 
-        VALUES (:titulo, :autor, :paginas)";
+        
+        $sql = "INSERT INTO libros (titulo, autor, paginas, creado) 
+        VALUES (:titulo, :autor, :paginas, NOW())";
 
         $result = $connection->prepare($sql);
     
@@ -99,7 +100,7 @@
     static function updateBook($params, $id) {
       try {
         $connection = Db::getInstance();
-        $sql = "UPDATE libros SET titulo=:titulo, autor=:autor, paginas=:paginas, imagen=:imagen WHERE id=$id";
+        $sql = "UPDATE libros SET imagen=:imagen WHERE id=$id";
         $result = $connection->prepare($sql);
     
         if ($result->execute($params)) {
