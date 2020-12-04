@@ -9,6 +9,20 @@
   include_once ('./utils/lib.php');
   $nombre = $_SESSION['nombre'];
   echo '<script> console.log("hola amigo"); </script>';
+
+  $peliculaSeleccionada = 'Alien';
+
+  if (isset($_POST['seleccionar'])) {
+  if (!empty($_POST['pelicula'])) {
+      $peliculaSeleccionada = $_POST['pelicula'];
+    }
+  }
+  else {
+    if (isset($_GET['pelicula'])) {
+      $peliculaSeleccionada = $_GET['pelicula'];
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -32,33 +46,22 @@
 
       <div class="titulo">
         <h1>Comprar entradas</h1>
-        <h2>Película: <?php 
-                        if(isset($_POST['seleccionar'])) {
-                          echo $_POST['pelicula'];
-                        } else {
-                          echo 'Alien';
-                        } ?></h2>
+        <h2>Película: <?php echo $peliculaSeleccionada ?></h2>
       </div>
       <div class="pantalla">
         <img src="./img/pant.png" alt="Pantalla cine">
       </div>
       <div class="butacas">
-        
-      </div>
-      <div class="inputs">
-        <form action="" method="post">
-          <?php 
+        <?php 
 
-            if (isset($_POST['seleccionar'])) {
-              if (!empty($_POST['pelicula'])) {
-                $peliculaSeleccionada = $_POST['pelicula'];
-              }
-            }
-            else {
-              $peliculaSeleccionada = 'Alien';
-            }
-          
-          ?>
+          $butacas = DbAccess::getButacasByPelicula($peliculaSeleccionada);
+
+          echo Lib::printButacas($butacas, $peliculaSeleccionada);
+
+        ?>
+      </div>
+      <div class="inputs" style="margin-top:10px">
+        <form action="" method="post">
           <select name="pelicula" id="pelicula">
             <option class="text-mid" value="Alien" 
               <?php if($peliculaSeleccionada === 'Alien') {
@@ -88,17 +91,33 @@
       </div>
     </div>
   </div>
+
   <?php 
   
-    function printButacas() {
-      return Lib::printButacas("11111111111111111111111111111111111111111111111111");
+    function printButacas($butacas) {
+        
+      $saltoFila = 9;
+      for ($i = 0; $i < strlen($butacas); $i++) {
+        $butaca = $butacas{$i};
+        if ($butacas{$i} === '1') {
+          $src = './img/butaca_amarilla.png';
+        }
+        else {
+          $src = './img/butaca_roja.png';
+        }
+        echo "<input onclick=" . imprimir() . " src='$src'>";
+        
+        if ($i === $saltoFila) {
+          $saltoFila += 10;
+          echo '<br>';
+        }
+      }
     }
   
   ?>
  <script>
    function filaSeleccionada(numFila) {
     console.log(numFila);
-    <?php printButacas() ?>
    }
  </script>
 </body>

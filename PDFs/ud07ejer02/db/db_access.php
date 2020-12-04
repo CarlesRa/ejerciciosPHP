@@ -11,45 +11,23 @@
 
     private const ERROR_MESSAGE = "Error al conectar con la base de datos";
 
-    static public function getAllUsers() {
+    static function getButacasByPelicula($pelicula) {
 
       try {
 
         $connection = DbConnection::getConnection();
-        $query = "SELECT * FROM usuariosb";
+        $query = "SELECT butacas FROM peliculas WHERE titulo = '" . $pelicula . "'";
+        
         $result = $connection->prepare($query);
         $result->execute();
+        $rows = null;
 
         while ($fila = $result->fetch()) {
           $rows[] = $fila;
         }
         
         DbConnection::stopConnection();
-
-        return $rows;
-
-      } catch (PDOException $e) {
-        return false;
-      }
-    }
-
-    static function getUserById($userId) {
-
-      try {
-
-        $connection = DbConnection::getConnection();
-        $query = "SELECT * FROM usuariosb WHERE usuario = " . $userId;
-        
-        $result = $connection->prepare($query);
-        $result->execute();
-
-        while ($fila = $result->fetch()) {
-          $rows[] = $fila;
-        }
-        
-        DbConnection::stopConnection();
-
-        return $rows;
+        return $rows[0];
 
       } catch (PDOException $e) {
         return false;
@@ -106,7 +84,6 @@
           return OK;
         }
         else {
-          error_log('entra el false del metodo insertar ', 0);
           
           return ERROR_NOMBRE_EXISTE;
         }
@@ -114,76 +91,29 @@
         DbConnection::stopConnection();
 
       } catch (PDOException $e) {
-        error_log('entra el catch de insertar', 0);
+
         return ERROR_CONEXION_DB;
       }
     }
 
-    static function getAllBooks() {
+    static function setButacas($pelicula, $butacas) {
 
       try {
+
         $connection = DbConnection::getConnection();
-
-        $rows = null;
-        $sql = "SELECT * FROM libros";
-        $result = $connection->prepare($sql);
-        $result->execute();
-    
-        while ($fila = $result->fetch()) {
-    
-          $rows[] = $fila;
-        }
-    
-        DbConnection::stopConnection();
-    
-        return $rows;
-
-      } catch (PDOException $e) {
-        return false;
-      }
-      
-    }
-
-    static function deleteBook($bookId) {
-      try {
-        $connection = DbConnection::getConnection();
-        $sql = "DELETE FROM libros WHERE id=$bookId";
-        $result = $connection->prepare($sql);
-    
-        if ($result->execute($params)) {
+        $query = "UPDATE peliculas SET butacas=$butacas WHERE titulo = '" . $pelicula . "'";
+        
+        $result = $connection->prepare($query);
+        
+        if ($result->execute()) {
           return true;
         }
-        else {
-         return false;
-        }
-    
-        DbConnection::stopConnection();
-      } catch (PDOException $e) {
-        return false;
-      }
-    }
+        else return false;
 
-    static function insertBook($params) {
-
-      try {
-        $connection = DbConnection::getConnection();
-        $sql = "INSERT INTO libros (titulo, autor, paginas) 
-                VALUES (:titulo, :autor, :paginas)";
-        $result = $connection->prepare($sql);
-    
-        if ($result->execute($params)) {
-          return true;
-        }
-        else {
-         return false;
-        }
-    
-        DbConnection::stopConnection();
       } catch (PDOException $e) {
         return false;
       }
     }
   }
-
 
 ?>
