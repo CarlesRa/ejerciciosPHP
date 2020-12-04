@@ -18,6 +18,13 @@
     insertarLibro();
   }
 
+  /**
+   * NO HE PODIDO MOSTRAR LA IMAGEN TRAIDA EN BLOB
+   * POR LO QUE HE DEJADO EL CAMPO IMAGEN EN VARCHAR PARA 
+   * ALMACENAR EL PATH DONDE LA GUARDO EN EL SERVIDOR.
+   * HE DEJADO COMENTADO POR EL CÓDIGO EL INTENTO.
+   */
+
 ?>
 
 <div class="container">
@@ -123,7 +130,7 @@
                 $id = DbAccess::getLastId();
                 //llamo al metodo comprobarImagen para obtener el path
                 if ($path = comprobarImagen($id)) {
-                                        
+                  //$imagenDb = addslashes(file_get_contents($path)); INTENTO PARA INSERTAR EL BLOB SIN ÉXITO
                   $book = [];
                   $book = 
                     [
@@ -151,8 +158,7 @@
           }
           //En caso de $_FILES null, se trata de un libro sin imagen
           else {
-            //date_default_timezone_set('Europe/Madrid');
-            $date = date('Y-m-d H:i:s',time());
+
             $book = 
             [
             ':titulo' => $titulo, ':autor' => $autor,
@@ -188,22 +194,18 @@
                 case UPLOAD_ERR_INI_SIZE: 
                 case UPLOAD_ERR_FORM_SIZE: 
                   showAlert('El fichero es demasiado grande'); 
-                  error_log('error tamaño', 0);
                   return false;
                   break; 
                 case UPLOAD_ERR_PARTIAL: 
                   showAlert('El fichero no se ha podido subir entero'); 
-                  error_log('error al subir', 0);
                   return false;
                   break; 
                 case UPLOAD_ERR_NO_FILE: 
                   showAlert('Debe seleccionar un fichero');
-                  error_log('error no seleccionado', 0);
                   return false;
                   break; 
                 default: 
                   showAlert('Error indeterminado'); 
-                  error_log('error indeterminado', 0);
                   return false;
               }
             }
@@ -232,14 +234,17 @@
               if($extension=="jpg"||$extension=="jpeg"){
                 imagejpeg($thumb,$path, 90);
                 return $path;
+                //return $img; INTENTO PARA INSERTAR EL BLOB SIN ÉXITO
               } 
               elseif($extension=="png") {
                 imagepng($thumb,$path);
                 return $path;
+                //return $img; INTENTO PARA INSERTAR EL BLOB SIN ÉXITO
               }
               elseif($extension=="gif") {
                 imagegif($thumb,$path);
                 return $path;
+                //return $img; INTENTO PARA INSERTAR EL BLOB SIN ÉXITO
               }
             }
             else {

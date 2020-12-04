@@ -1,0 +1,57 @@
+html {
+  background: rgb(106,100,227);
+  background: -moz-linear-gradient(0deg, rgba(106,100,227,1) 29%, rgba(34,195,182,0) 99%);
+  background: -webkit-linear-gradient(0deg, rgba(106,100,227,1) 29%, rgba(34,195,182,0) 99%);
+  background: linear-gradient(0deg, rgba(106,100,227,1) 29%, rgba(34,195,182,0) 99%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6a64e3",endColorstr="#22c3b6",GradientType=1);
+  height: 100%;
+}
+
+body {
+ 
+}
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 60%;
+  height: 100%;
+}
+  .logo {
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+  .formulario {
+    margin-left: 12%;
+  }
+  .saludo {
+    margin-left: 12%;
+  }
+  .inputs {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+.text-blue {
+  color: blue;
+}
+.text-white {
+  color: white;
+}
+.text-mid {
+  font-size: 1.2rem;
+}
+.pointer {
+  cursor: pointer;
+}
+.p-5 {
+  padding: 5px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+p {
+  font-size: 1.2rem;
+}

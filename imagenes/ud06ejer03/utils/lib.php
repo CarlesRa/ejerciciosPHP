@@ -18,6 +18,7 @@
         
         if (($path = $book['imagen']) != null) {
           $result .= '<td><img src="' . $book['imagen'] . '"></td></tr>';
+          //$result .= '<td><img src="imagen.php?id=' . $book['id'] .'"/></td></tr>'; INTENTO PARA MOSTRAR EL BLOB SIN ÉXITO
         }
         else 
           $result .= '</tr>';
