@@ -1,11 +1,12 @@
 <?php 
 
-  $ruta = $_SERVER['DOCUMENT_ROOT'] . '/ejerciciosPHP/authentication/ud05ejer02/constants/constants.php';
-  $rutaUser = $_SERVER['DOCUMENT_ROOT'] . '/ejerciciosPHP/authentication/ud05ejer02/model/user.php';
+  //$ruta = $_SERVER['DOCUMENT_ROOT'] . '/ejerciciosPHP/authentication/ud05ejer02/constants/constants.php';
+  //$rutaUser = $_SERVER['DOCUMENT_ROOT'] . '/ejerciciosPHP/authentication/ud05ejer02/model/user.php';
 
   include ('db_connection.php');
-  include ($ruta);
-  include_once ($rutaUser);
+  include_once ('./constants/constants.php');
+  //include ($ruta);
+  //include_once ($rutaUser);
 
   class DbAccess {
 
