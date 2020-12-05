@@ -2,35 +2,19 @@
 
   require_once ("./db/db_access.php");
 
-  /*if (isset($_GET['position']) && isset($_GET['butacas']) && 
-      isset($_GET['pelicula'])) {
-
-    require_once ("./db/db_access.php");
-
-    $position = $_GET['position'];
-    $butacas = $_GET['butacas'];
-    $pelicula = $_GET['pelicula'];
-    $butacas[$position] = '2';
-    $src = "http://localhost/ejerciciosPHP/PDFs/ud07ejer02/cinepagina.php?pelicula=$pelicula";
-    DbAccess::setButacas($pelicula, $butacas);
-    //header("Location: http://localhost/ejerciciosPHP/PDFs/ud07ejer02/cinepagina.php?pelicula=$pelicula");
-  }*/
-
   if (isset($_GET['fila']) && isset($_GET['columna']) && 
-      isset($_GET['butacas']) && isset($_GET['pelicula']) ) {
+      isset($_GET['pelicula']) ) {
 
       $fila = $_GET['fila'];
       $columna = $_GET['columna'];
-      $butacas = $_GET['butacas'];
       $pelicula = $_GET['pelicula'];
+      $butacas = DbAccess::getButacasByPelicula($pelicula)["butacas"];
       $src = "http://localhost/ejerciciosPHP/PDFs/ud07ejer02/cinepagina.php?pelicula=$pelicula";
       $position = $fila * (NUM_BUTACAS_FILA - 1) + $columna  + $fila;
 
       $butacas[$position] = '2';
       DbAccess::setButacas($pelicula, $butacas);
   }
-
-
 ?>
 
 <!DOCTYPE html>

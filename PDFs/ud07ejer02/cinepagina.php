@@ -23,6 +23,14 @@
     }
   }
 
+  if (isset($_POST['reiniciar'])) {
+
+    DbAccess::setButacas(ALIEN, REINICIAR_BUTACAS);
+    DbAccess::setButacas(BATMAN, REINICIAR_BUTACAS);
+    DbAccess::setButacas(TITANIC, REINICIAR_BUTACAS);
+  }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +52,13 @@
 
     <div class="formulario">
 
+    <div class="reiniciar" style="opacity: 0;">
+        <form action="" method="post">
+          <p>
+          <button style="cursor: pointer" type="submit" name="reiniciar" value="Reiniciar Butacas"></button>
+          </p>
+        </form>
+      </div>
       <div class="titulo">
         <h1>Comprar entradas</h1>
         <h2>Película: <?php echo $peliculaSeleccionada ?></h2>
@@ -91,30 +106,6 @@
       </div>
     </div>
   </div>
-
-  <?php 
-  
-    function printButacas($butacas) {
-        
-      $saltoFila = 9;
-      for ($i = 0; $i < strlen($butacas); $i++) {
-        $butaca = $butacas{$i};
-        if ($butacas{$i} === '1') {
-          $src = './img/butaca_amarilla.png';
-        }
-        else {
-          $src = './img/butaca_roja.png';
-        }
-        echo "<input onclick=" . imprimir() . " src='$src'>";
-        
-        if ($i === $saltoFila) {
-          $saltoFila += 10;
-          echo '<br>';
-        }
-      }
-    }
-  
-  ?>
  <script>
    function filaSeleccionada(numFila) {
     console.log(numFila);

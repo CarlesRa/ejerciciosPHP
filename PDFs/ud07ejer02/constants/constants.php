@@ -8,8 +8,15 @@
 
   # Datos Aplicación
 
+  //Películas
+  const ALIEN = "Alien";
+  const BATMAN = "Batman";
+  const TITANIC = "Titanic";
+
+  //Butacas
   const NUM_BUTACAS_FILA = 10;
   const NUM_FILAS = 5;
+  const REINICIAR_BUTACAS = "11111111111111111111111111111111111111111111111111";
 
 
 ?>

@@ -27,7 +27,6 @@
           $rows[] = $fila;
         }
         
-        DbConnection::stopConnection();
         return $rows[0];
 
       } catch (PDOException $e) {

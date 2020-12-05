@@ -6,8 +6,8 @@
 }
 
 .img-logo {
-  width: 350px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
 }
 
 .center {
@@ -15,7 +15,7 @@
 }
 
 .button-large {
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 5px;
   background-color: green;
   color: white;
