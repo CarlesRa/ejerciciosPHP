@@ -171,11 +171,6 @@
     $pdf->Line(20, 80, 195, 80);
     //margin-left, margin-top-left, largo, margin-top-right
   
-    // some example data
-    $orders[] = array('quant' => 5, 'descr' => '.com domain registration', 'price' => 9.95);
-    $orders[] = array('quant' => 3, 'descr' => '.net domain name renewal', 'price' => 11.95);
-    $orders[] = array('quant' => 1, 'descr' => 'SSL certificate 256-Byte encryption', 'price' => 99.95);
-    $orders[] = array('quant' => 1, 'descr' => '25GB VPS Hosting, 200GB Bandwidth', 'price' => 19.95);
     
     $currY = 80; //Variable para almacenar la posición -Y- que nos interesa
     $total = 0;
@@ -203,7 +198,7 @@
       '¡¡Gracias por comprar en Toys Shop, le deseamos una feliz navidad y un próspero año nuevo sin coronavirus!!', 
       0, 'L', 0, 1, '', '', true, null, true);
     
-    //Close and output PDF document
+    //Cierro el documento 
     $pdf->Output($nombre . '.pdf', 'D');
   }
 
