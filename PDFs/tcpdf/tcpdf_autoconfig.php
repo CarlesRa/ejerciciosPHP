@@ -133,7 +133,7 @@ if (!defined('PDF_PAGE_FORMAT')) {
 }
 
 if (!defined('PDF_PAGE_ORIENTATION')) {
-	define ('PDF_PAGE_ORIENTATION', 'P');
+	define ('PDF_PAGE_ORIENTATION', 'L');
 }
 
 if (!defined('PDF_CREATOR')) {
@@ -141,7 +141,7 @@ if (!defined('PDF_CREATOR')) {
 }
 
 if (!defined('PDF_AUTHOR')) {
-	define ('PDF_AUTHOR', 'TCPDF');
+	define ('PDF_AUTHOR', 'Carles Ramos');
 }
 
 if (!defined('PDF_HEADER_TITLE')) {
@@ -149,7 +149,7 @@ if (!defined('PDF_HEADER_TITLE')) {
 }
 
 if (!defined('PDF_HEADER_STRING')) {
-	define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+	define ('PDF_HEADER_STRING', "Carles Ramos");
 }
 
 if (!defined('PDF_UNIT')) {

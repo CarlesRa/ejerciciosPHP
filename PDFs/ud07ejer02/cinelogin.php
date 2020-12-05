@@ -79,7 +79,7 @@
           value="<?php if (isset($_POST['entrar']) &&
                            isset($_POST['pass'])) echo $_POST['pass'] ?>">
           <?php 
-            if (isset($_POST['enviar']) && empty($_POST['pass'])) {
+            if (isset($_POST['entrar']) && empty($_POST['pass'])) {
               echo '<br><span style="color:red;">El campo contraseña es obligatorio';
             }
           ?>

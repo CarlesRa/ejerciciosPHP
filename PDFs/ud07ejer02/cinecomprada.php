@@ -14,7 +14,7 @@
 
       $butacas[$position] = '2';
       DbAccess::setButacas($pelicula, $butacas);
-  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +33,10 @@
     </div>
     <div class="titulo ml-10">
       <h1>¡Enhorabuena!</h1>
-      <p>Adquirida entrada para <big><?php echo $pelicula ?></big>. si desea descargarla, haga click <a href="#"> AQUÍ</a></p>
+      <p>Adquirida entrada para <big><?php echo $pelicula ?></big>. si desea descargarla, haga click
+       <?php 
+        echo "<a href='./cinepdfentrada.php?fila=$fila&butaca=$columna&pelicula=$pelicula'>¡Aqui!</a></p>";
+       ?>
     </div>
     <div class="button">
 
@@ -44,3 +47,10 @@
   </div>
 </body>
 </html>
+
+<?php 
+  }
+  else {
+    header("Location: ./cinepagina.php");
+  }
+?>

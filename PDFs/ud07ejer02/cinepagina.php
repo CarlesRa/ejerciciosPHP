@@ -47,8 +47,8 @@
     <div class="logo">
       <img src="./img/logo.png" alt="Logo Super Cines">
     </div>
-    <p class="text-mid saludo">¡¡Hola <?php echo $nombre ?>!!
-       '. **<a href="./logout.php">[Logout]</a>**</p>
+    <p class="text-mid saludo">¡¡Hola, <b><?php echo $nombre ?></b>!!
+       '. **<a href="./cinelogout.php">[Logout]</a>**</p>
 
     <div class="formulario">
 
